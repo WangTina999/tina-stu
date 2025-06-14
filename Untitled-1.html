@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tina's 厝 - my room</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      cursor: url('mouse.png'), auto;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+
+    .room-container {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .room-background {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .item {
+      position: absolute;
+    }
+
+    .window {
+      top: 5%;
+      left: 77%;
+      width: 18%;
+      z-index: 1;
+      transition: transform 0.4s ease;
+    }
+
+    .table {
+      top: 50%;
+      left: 18%;
+      width: 18%;
+      z-index: 1;
+    }
+
+    .tissue {
+      top: 42%;
+      left: 25%;
+      width: 7%;
+      z-index: 2;
+    }
+
+    .tissue-paper {
+      top: 37%;
+      left: 26.5%;
+      width: 4%;
+      z-index: 1;
+      display: none;
+    }
+
+    .sofa {
+      top: 40%;
+      left: 34%;
+      width: 22%;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .notebook {
+      top: 52%;
+      left: 75%;
+      width: 7%;
+      z-index: 1;
+    }
+
+    .ear {
+      top: 56%;
+      left: 61%;
+      width: 9%;
+      z-index: 1;
+      transition: transform 0.1s ease;
+    }
+
+    .shake {
+      animation: shake 0.2s infinite;
+    }
+
+    @keyframes shake {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      20%  { transform: translate(3px, -3px) rotate(-2deg); }
+      40%  { transform: translate(-3px, 3px) rotate(2deg); }
+      60%  { transform: translate(3px, 3px) rotate(-2deg); }
+      80%  { transform: translate(-3px, -3px) rotate(2deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    .welcome {
+      position: absolute;
+      top: 40%;
+      left: 20%;
+      width: 20%;
+      display: none;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .notebook-effect {
+      position: absolute;
+      width: 6%;
+      z-index: 2;
+      display: none;
+      pointer-events: none;
+    }
+
+    .notebook1 { top: 48%; left: 80%; }
+    .notebook2 { top: 50%; left: 83%; }
+    .notebook3 { top: 54%; left: 79%; }
+  </style>
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tina's 厝</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="Untitled-1.html">my room</a></li>
+          <li class="nav-item"><a class="nav-link" href="Untitled-2.html">QA</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 房間物件 -->
+  <div class="room-container">
+    <img src="myroomback.png" alt="背景" class="room-background" />
+
+    <a href="window.html">
+      <img src="window.png" class="item window" alt="窗戶" id="window" />
+    </a>
+
+    <img src="table.png" class="item table" alt="桌子" id="table" />
+
+    <a href="tissu.html">
+      <img src="tissu.png" class="item tissue" alt="衛生紙" id="tissue" />
+    </a>
+    <img src="tissupaper.png" class="item tissue-paper" id="tissue-paper" />
+
+    <a href="sofa.html">
+      <img src="sofa.png" class="item sofa" alt="沙發" id="sofa" />
+    </a>
+
+    <a href="ear.html">
+      <img src="ear.png" class="item ear" alt="耳機" id="earphone" />
+    </a>
+
+    <a href="notebook.html">
+      <img src="notebook.png" class="item notebook" alt="筆記本" id="notebook" />
+    </a>
+
+    <img src="welcome.png" class="welcome" id="welcome-img" alt="welcome" />
+
+    <!-- 筆記本特效 -->
+    <img src="notebook.png" class="notebook-effect notebook1" id="nb1" />
+    <img src="notebook.png" class="notebook-effect notebook2" id="nb2" />
+    <img src="notebook.png" class="notebook-effect notebook3" id="nb3" />
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS 效果 -->
+  <script>
+    const table = document.getElementById('table');
+    const welcome = document.getElementById('welcome-img');
+    const earphone = document.getElementById('earphone');
+    const notebook = document.getElementById('notebook');
+    const sofa = document.getElementById('sofa');
+    const windowEl = document.getElementById('window');
+    const tissue = document.getElementById('tissue');
+    const tissuePaper = document.getElementById('tissue-paper');
+
+    const notebookEffects = [document.getElementById('nb1'), document.getElementById('nb2'), document.getElementById('nb3')];
+
+    // welcome 圖片顯示
+    table.addEventListener('mouseenter', () => {
+      welcome.style.display = 'block';
+    });
+    table.addEventListener('mouseleave', () => {
+      welcome.style.display = 'none';
+    });
+
+    // 耳機震動
+    earphone.addEventListener('mouseenter', () => {
+      earphone.classList.add('shake');
+    });
+    earphone.addEventListener('mouseleave', () => {
+      earphone.classList.remove('shake');
+    });
+
+    // 筆記本特效
+    notebook.addEventListener('mouseenter', () => {
+      notebookEffects.forEach(nb => nb.style.display = 'block');
+    });
+    notebook.addEventListener('mouseleave', () => {
+      notebookEffects.forEach(nb => nb.style.display = 'none');
+    });
+
+    // 沙發彈跳
+    sofa.addEventListener('mouseenter', () => {
+      sofa.style.transform = 'translateY(-10px)';
+    });
+    sofa.addEventListener('mouseleave', () => {
+      sofa.style.transform = 'translateY(0)';
+    });
+
+    // 衛生紙抽出
+    tissue.addEventListener('mouseenter', () => {
+      tissuePaper.style.display = 'block';
+    });
+    tissue.addEventListener('mouseleave', () => {
+      tissuePaper.style.display = 'none';
+    });
+
+    // 窗戶移動但仍可點擊
+    windowEl.addEventListener('mouseenter', () => {
+      windowEl.style.transform = 'translateX(20px)';
+    });
+    windowEl.addEventListener('mouseleave', () => {
+      windowEl.style.transform = 'translateX(0)';
+    });
+  </script>
+</body>
+</html>
